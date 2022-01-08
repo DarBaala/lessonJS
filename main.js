@@ -12,8 +12,28 @@ let expenses2 = prompt("Введите обязательную статью р�
 let amount1 = +prompt(`Во сколько ${expenses1} обойдется?`, "5000");
 let amount2 = +prompt(`Во сколько ${expenses2} обойдется?`, "8000");
 
-let budgetDay = budgetMonth / 30;
-console.log("Бюджет на день: ", Math.floor(budgetDay));
+const showTypeOf = (data) => {
+  console.log(typeof data);
+};
+showTypeOf(money);
+showTypeOf(income);
+showTypeOf(deposit);
+
+const getExpensesMonth = () => {
+  return amount1 + amount2;
+};
+
+const getAccumulatedMonth = () => {
+  return money - amount1 - amount2;
+};
+
+const accumulatedMonth = getAccumulatedMonth;
+
+const getTargetMonth = () => {
+  return Math.ceil(mission / accumulatedMonth);
+};
+
+let budgetDay = accumulatedMonth / 30;
 if (budgetDay === 1200) {
   console.log(
     "У вас почти получилось попасть в группу с высоким уровнем дохода"
@@ -29,17 +49,3 @@ if (budgetDay === 1200) {
 } else {
   console.log("Ваш уровень дохода ниже среднего");
 }
-
-const getExpensesMonth = () => {
-  return amount1 + amount2;
-};
-
-const getAccumulatedMonth = () => {
-  return money - amount1 - amount2;
-};
-
-const accumulatedMonth = getAccumulatedMonth;
-
-const getTargetMonth = () => {
-  return Math.ceil(mission / accumulatedMonth);
-};
