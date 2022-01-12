@@ -27,21 +27,20 @@ console.log(addExpenses.split(", "));
 
 let expenses = [];
 
-let getExpensesMonth = function () {
+function getExpensesMonth() {
   let sum = 0;
+  let res = 0;
   for (let i = 0; i < 2; i++) {
     expenses[i] = prompt("Введите обязательную статью расходов?");
-    sum += (() => {
-      let n = 0;
-      do {
-        n = prompt("Во сколько это обойдется?");
-      } while (!isNumber(n));
-      return +n;
-    })();
+    sum = prompt("Во сколько это обойдется?");
+    while (!isNumber(sum)) {
+      sum = prompt("Во сколько это обойдется?");
+    }
+    res += +sum;
   }
-  console.log(sum);
-  return sum;
-};
+  console.log(expenses);
+  return res;
+}
 let expensesAmount = getExpensesMonth();
 
 console.log("expensesAmount:", expensesAmount);
