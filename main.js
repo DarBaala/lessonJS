@@ -1,12 +1,8 @@
 "use strict";
 
-const isNumber = function (n) {
+function isNumber(n) {
   return !isNaN(parseFloat(n)) && isFinite(n);
-};
-const isStr = function (str) {
-  const strReg = /\D/;
-  return !strReg.test(str) || str === "" || str === null;
-};
+}
 let money;
 do {
   money = prompt("Ваш месячный доход?");
@@ -33,7 +29,7 @@ let appData = {
           "Какой дополнительный заработок у Вас есть?",
           "Таксую"
         );
-      } while (isStr(itemIncome));
+      } while (isNumber(itemIncome));
       do {
         cashIncome = prompt("Сколько в месяц Вы на этом зарабатываете?", 10000);
       } while (!isNumber(cashIncome));
@@ -43,9 +39,9 @@ let appData = {
     do {
       addExpenses = prompt(
         "Перечислите возможные расходы за рассчитываемый период через запятую",
-        "Шины,бильярд"
+        "Шины, бильярд"
       );
-    } while (isStr(addExpenses));
+    } while (isNumber(addExpenses, true));
     appData.addExpenses = addExpenses.toLowerCase().split(",");
     appData.deposit = confirm("Есть ли у вас депозит в банке?");
     let sum = 0,
@@ -54,7 +50,7 @@ let appData = {
     for (let i = 0; i < 2; i++) {
       do {
         question = prompt("Введите обязательную статью расходов?");
-      } while (isStr(question));
+      } while (isNumber(question));
       sum = prompt("Во сколько это обойдется?");
       while (!isNumber(sum)) {
         sum = prompt("Во сколько это обойдется?");
