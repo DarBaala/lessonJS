@@ -23,30 +23,31 @@ let appData = {
     let addExpenses = prompt(
       "Перечислите возможные расходы за рассчитываемый период через запятую"
     );
-    appData.addExpenses = addExpenses.toLowerCase().split(", ");
+    appData.addExpenses = addExpenses.toLowerCase().split(",");
     appData.deposit = confirm("Есть ли у вас депозит в банке?");
+    let sum = 0,
+      res = 0,
+      question;
     for (let i = 0; i < 2; i++) {
-      appData.expenses[prompt("Введите обязательную статью расходов?")] =
-        (() => {
-          let n = 0;
-          do {
-            n = prompt("Во сколько это обойдется?");
-          } while (!isNumber(n));
-          return +n;
-        })();
+      question = prompt("Введите обязательную статью расходов?");
+      sum = prompt("Во сколько это обойдется?");
+      while (!isNumber(sum)) {
+        sum = prompt("Во сколько это обойдется?");
+      }
+      appData.expenses[question] = +sum;
     }
     console.log("appData.expenses:", appData.expenses);
+
+    return res;
   },
   getExpensesMonth: function () {
-    appData.expensesMonth = 0;
+    let sum = 0;
     for (let elem in appData.expenses) {
-      appData.expensesMonth += appData.expenses[elem];
+      sum += appData.expenses[elem];
     }
+    appData.expensesMonth = sum;
   },
   getBudget: function () {
-    if (!appData.budget) {
-      appData.budget = 0;
-    }
     appData.budgetMonth = appData.budget - appData.expensesMonth;
     appData.budgetDay = Math.floor(appData.budgetMonth / 30);
   },
@@ -74,14 +75,12 @@ appData.asking();
 appData.getExpensesMonth();
 appData.getBudget();
 
-const targetMonth = appData.getTargetMonth();
-
 console.log("Расходы за месяц: ", appData.expensesMonth);
-console.log(
-  targetMonth >= 0
-    ? `Цель будет достигнута за: ${targetMonth} месяца`
-    : "Цель не будет достигнута"
-);
+if (appData.getTargetMonth() > 0) {
+  console.log("Цель достигнется за: ", appData.getTargetMonth());
+} else {
+  console.log("Цель не будет достигнута");
+}
 console.log("Уровень дохода: ", appData.getStatusIncome());
 
 console.log("Данные: ");
