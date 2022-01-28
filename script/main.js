@@ -2,10 +2,10 @@
 
 let start = document.getElementById("start");
 console.log("start:", start);
-let incomeAdd = document.getElementsByTagName("button"[0]);
-console.log("incomeAdd:", incomeAdd);
-let expensesAdd = document.getElementsByTagName("button"[1]);
-console.log("expensesAdd:", expensesAdd);
+let incomeAdd = document.getElementsByTagName("button")[0];
+console.log("incomeAdd: ", incomeAdd);
+let expensesAdd = document.getElementsByTagName("button")[1];
+console.log("expensesAdd: ", expensesAdd);
 let depositCheck = document.querySelector("#deposit-check");
 console.log("depositCheck:", depositCheck);
 let additionalIncomeItem = document.querySelectorAll(".additional_income-item");
@@ -32,11 +32,14 @@ console.log("periodSelect: ", periodSelect);
 let salaryAmount = document.querySelector(".salary-amount");
 console.log("salaryAmount: ", salaryAmount);
 let incomeItems = document.querySelector(".income-items");
-console.log("incomeTitle: ", incomeItems.children[0]);
-console.log("incomeAmount: ", incomeItems.children[1]);
-let expensesItems = document.querySelector(".expenses-items");
-console.log("expensesTitle: ", expensesItems.children[0]);
-console.log("expensesAmount: ", expensesItems.children[1]);
+let incomeTitle = document.querySelectorAll(".income-title")[1];
+console.log("incomeTitle: ", incomeTitle);
+let incomeAmount = document.querySelector(".income-amount");
+console.log("incomeAmount: ", incomeAmount);
+let expensesTitle = document.querySelectorAll(".expenses-title")[1];
+console.log("expensesTitle: ", expensesTitle);
+let expensesAmount = document.querySelector(".expenses-amount");
+console.log("expensesAmount: ", expensesAmount);
 let additionalExpensesItem = document.querySelector(
   ".additional_expenses-item"
 );
