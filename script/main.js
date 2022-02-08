@@ -152,11 +152,12 @@ let appData = {
     incomePeriodValue.value = appData.calcSavedMoney();
   },
   blockStart: function () {
-    appData.start.disabled = !salaryAmount.value.trim();
+    start.disabled = !salaryAmount.value.trim();
   },
 };
 appData.blockStart();
 start.addEventListener("click", appData.start);
 expensesPlus.addEventListener("click", appData.addExpensesBlock);
 incomePlus.addEventListener("click", appData.addIncomeBlock);
+salaryAmount.addEventListener("input", appData.blockStart);
 appData.getInfoDeposit();
