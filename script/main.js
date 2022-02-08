@@ -74,8 +74,6 @@ let appData = {
   },
   addIncomeBlock: function () {
     let cloneIncomeItem = incomeItems[0].cloneNode(true);
-    incomeTitle.value = "";
-    incomeAmount.value = "";
     incomeItems[0].parentNode.insertBefore(cloneIncomeItem, incomePlus);
     incomeItems = document.querySelectorAll(".income-items");
     if (incomeItems.length === 3) {
@@ -92,10 +90,9 @@ let appData = {
     });
   },
   getIncome: function () {
-    appData.incomeMonth = 0;
-    incomeItems.forEach((item) => {
-      let itemIncome = incomeTitle.value;
-      let cashIncome = incomeAmount.value;
+    incomeItems.forEach(function (item) {
+      let itemIncome = item.querySelector(".income-title").value;
+      let cashIncome = item.querySelector(".income-amount").value;
       if (itemIncome !== "" && cashIncome !== "") {
         appData.income[itemIncome] = +cashIncome;
         appData.incomeMonth += +cashIncome;
