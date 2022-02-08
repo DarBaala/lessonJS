@@ -28,6 +28,7 @@ let additionalExpensesItem = document.querySelector(
 let depositAmount = document.querySelector(".deposit-amount");
 let depositPercent = document.querySelector(".deposit-percent");
 let targetAmount = document.querySelector(".target-amount");
+let periodAmount = document.querySelector(".period-amount");
 function isNumber(n) {
   return !isNaN(parseFloat(n)) && isFinite(n);
 }
@@ -67,6 +68,8 @@ let appData = {
   },
   addExpensesBlock: function () {
     let cloneExpensesItem = expensesItems[0].cloneNode(true);
+    cloneExpensesItem.querySelector(".expenses-title").value = "";
+    cloneExpensesItem.querySelector(".expenses-amount").value = "";
     expensesItems[0].parentNode.insertBefore(cloneExpensesItem, expensesPlus);
     expensesItems = document.querySelectorAll(".expenses-items");
     if (expensesItems.length === 3) {
@@ -75,6 +78,8 @@ let appData = {
   },
   addIncomeBlock: function () {
     let cloneIncomeItem = incomeItems[0].cloneNode(true);
+    cloneIncomeItem.querySelector(".income-title").value = "";
+    cloneIncomeItem.querySelector(".income-amount").value = "";
     incomeItems[0].parentNode.insertBefore(cloneIncomeItem, incomePlus);
     incomeItems = document.querySelectorAll(".income-items");
     if (incomeItems.length === 3) {
@@ -148,7 +153,7 @@ let appData = {
     return appData.budgetMonth * periodSelect.value;
   },
   changePeriodSelect: function (event) {
-    document.querySelector(".period-amount").textContent = event.target.value;
+    periodAmount.textContent = event.target.value;
     incomePeriodValue.value = appData.calcSavedMoney();
   },
   blockStart: function () {
@@ -161,3 +166,21 @@ expensesPlus.addEventListener("click", appData.addExpensesBlock);
 incomePlus.addEventListener("click", appData.addIncomeBlock);
 salaryAmount.addEventListener("input", appData.blockStart);
 appData.getInfoDeposit();
+
+let collectName = document.querySelectorAll(
+  'input[placeholder="Наименование"]'
+);
+
+collectName.forEach(function (elem) {
+  elem.addEventListener("input", function () {
+    this.value = this.value.replace(/[^а-я А-Я,]/g, "");
+  });
+});
+
+let collectAmount = document.querySelectorAll('input[placeholder="Сумма"]');
+
+collectAmount.forEach(function (elem) {
+  elem.addEventListener("input", function () {
+    this.value = this.value.replace(/[^\d,]/g, "");
+  });
+});
