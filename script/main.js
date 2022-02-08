@@ -53,9 +53,9 @@ let appData = {
     appData.getBudget();
     appData.getAddExpenses();
     appData.getAddIncome();
-    appData.snowResult();
+    appData.showResult();
   },
-  snowResult: function () {
+  showResult: function () {
     budgetMonthValue.value = appData.budgetMonth;
     budgetDayValue.value = appData.budgetDay;
     expensesMonthValue.value = appData.expensesMonth;
@@ -125,7 +125,7 @@ let appData = {
   getBudget: function () {
     appData.budgetMonth =
       appData.budget + appData.incomeMonth - appData.expensesMonth;
-    appData.budgetDay = Math.floor(appData.budgetMonth / 30);
+    appData.budgetDay = Math.ceil(appData.budgetMonth / 30);
   },
   getTargetMonth: function () {
     return targetAmount.value / appData.budgetMonth;
