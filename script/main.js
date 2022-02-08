@@ -63,6 +63,7 @@ let appData = {
     additionalIncomeValue.value = appData.addIncome.join(", ");
     targetMonthValue.value = Math.ceil(appData.getTargetMonth());
     incomePeriodValue.value = appData.calcSavedMoney();
+    periodSelect.addEventListener("input", appData.changePeriodSelect);
   },
   addExpensesBlock: function () {
     let cloneExpensesItem = expensesItems[0].cloneNode(true);
@@ -158,5 +159,4 @@ appData.blockStart();
 start.addEventListener("click", appData.start);
 expensesPlus.addEventListener("click", appData.addExpensesBlock);
 incomePlus.addEventListener("click", appData.addIncomeBlock);
-periodSelect.addEventListener("input", appData.changePeriodSelect);
 appData.getInfoDeposit();
