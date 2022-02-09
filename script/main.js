@@ -47,14 +47,45 @@ let appData = {
   budgetMonth: 0,
   expensesMonth: 0,
   start: function () {
-    appData.budget = +salaryAmount.value;
-    appData.getExpenses();
-    appData.getIncome();
-    appData.getExpensesMonth();
-    appData.getBudget();
-    appData.getAddExpenses();
-    appData.getAddIncome();
-    appData.showResult();
+    this.budget = +salaryAmount.value;
+    this.getExpenses();
+    this.getIncome();
+    this.getExpensesMonth();
+    this.getBudget();
+    this.getAddExpenses();
+    this.getAddIncome();
+    this.showResult();
+    if (start.textContent === "Рассчитать") {
+      this.blockInputs();
+      start.textContent = "Сбросить";
+    } else {
+      start.textContent = "Рассчитать";
+      this.reset();
+    }
+  },
+  blockInputs: (disabled = true) => {
+    document.querySelectorAll(".data input[type=text]").forEach((item) => {
+      item.disabled = disabled;
+    });
+  },
+  reset: function () {
+    for (let i = incomeItems.length - 1; i > 0; i--) {
+      incomeItems[0].parentNode.removeChild(incomeItems[i]);
+    }
+    for (let i = expensesItems.length - 1; i > 0; i--) {
+      expensesItems[0].parentNode.removeChild(expensesItems[i]);
+    }
+    incomePlus.style.display = "";
+    expensesPlus.style.display = "";
+    this.blockInputs(false);
+    document.querySelectorAll("input[type=text]").forEach((item) => {
+      item.value = "";
+    });
+    this.getBudget();
+    periodSelect.value = document.querySelector(
+      ".period-amount"
+    ).textContent = 1;
+    this.blockStart();
   },
   showResult: function () {
     budgetMonthValue.value = appData.budgetMonth;
@@ -160,8 +191,9 @@ let appData = {
     start.disabled = !salaryAmount.value.trim();
   },
 };
+const foo = appData.start.bind(appData);
 appData.blockStart();
-start.addEventListener("click", appData.start);
+start.addEventListener("click", foo);
 expensesPlus.addEventListener("click", appData.addExpensesBlock);
 incomePlus.addEventListener("click", appData.addIncomeBlock);
 salaryAmount.addEventListener("input", appData.blockStart);
@@ -181,6 +213,6 @@ let collectAmount = document.querySelectorAll('input[placeholder="Сумма"]')
 
 collectAmount.forEach(function (elem) {
   elem.addEventListener("input", function () {
-    this.value = this.value.replace(/[^\d,]/g, "");
+    this.value = this.value.replace(/[^0-9]/, "");
   });
 });
