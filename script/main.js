@@ -135,7 +135,7 @@ let appData = {
       let itemExpenses = item.querySelector(".expenses-title").value;
       let cashExpenses = item.querySelector(".expenses-amount").value;
       if (itemExpenses !== "" && cashExpenses !== "") {
-        this.expenses[itemExpenses] = +cashExpenses;
+        appData.expenses[itemExpenses] = +cashExpenses;
       }
     });
   },
@@ -144,8 +144,8 @@ let appData = {
       let itemIncome = item.querySelector(".income-title").value;
       let cashIncome = item.querySelector(".income-amount").value;
       if (itemIncome !== "" && cashIncome !== "") {
-        this.income[itemIncome] = +cashIncome;
-        this.incomeMonth += +cashIncome;
+        appData.income[itemIncome] = +cashIncome;
+        appData.incomeMonth += +cashIncome;
       }
     });
   },
@@ -160,7 +160,7 @@ let appData = {
     addExpenses.forEach(function (item) {
       item = item.trim();
       if (item !== "") {
-        this.addExpenses.push(item);
+        appData.addExpenses.push(item);
       }
     });
   },
@@ -168,17 +168,16 @@ let appData = {
     additionalIncomeItem.forEach(function (item) {
       let itemValue = item.value.trim();
       if (itemValue !== "") {
-        this.addIncome.push(itemValue);
+        appData.addIncome.push(itemValue);
       }
     });
   },
   getBudget: function () {
-    appData.budgetMonth =
-      appData.budget + appData.incomeMonth - appData.expensesMonth;
-    appData.budgetDay = Math.ceil(appData.budgetMonth / 30);
+    this.budgetMonth = this.budget + this.incomeMonth - this.expensesMonth;
+    this.budgetDay = Math.ceil(this.budgetMonth / 30);
   },
   getTargetMonth: function () {
-    return targetAmount.value / appData.budgetMonth;
+    return targetAmount.value / this.budgetMonth;
   },
   calcSavedMoney: function () {
     return this.budgetMonth * periodSelect.value;
