@@ -43,4 +43,51 @@ window.addEventListener("DOMContentLoaded", function () {
     idInterval = setInterval(updateClock, 1000);
   }
   countTimer("22 march 2022");
+  /// MENU
+  const toggleMenu = () => {
+    const btnMenu = document.querySelector(".menu"),
+      menu = document.querySelector("menu"),
+      closeBtn = document.querySelector(".close-btn"),
+      menuItem = menu.querySelectorAll("ul>li");
+    const handlerMenu = () => {
+      menu.classList.toggle("active-menu");
+    };
+    btnMenu.addEventListener("click", handlerMenu);
+    closeBtn.addEventListener("click", handlerMenu);
+    menuItem.forEach((elem) => elem.addEventListener("click", handlerMenu));
+  };
+  toggleMenu();
+  ///POPUP
+  const togglePopUp = () => {
+    const popup = document.querySelector(".popup"),
+      popUpBtn = document.querySelectorAll(".popup-btn"),
+      popUpClose = document.querySelector(".popup-close");
+    popup.style.display = "block";
+    popup.style.transform = "translateX(100%)";
+    let animation,
+      count = 100;
+    const transform = () => {
+      animation = requestAnimationFrame(transform);
+      count--;
+      if (count >= 0) {
+        popup.style.transform = `translateX(${count}%)`;
+      } else {
+        cancelAnimationFrame(animation);
+      }
+    };
+    popUpBtn.forEach((elem) => {
+      elem.addEventListener("click", () => {
+        if (document.body.clientWidth > 768) {
+          requestAnimationFrame(transform);
+        } else {
+          popup.style.transform = "translateX(0)";
+        }
+      });
+    });
+    popUpClose.addEventListener("click", () => {
+      count = 100;
+      popup.style.transform = "translateX(100%)";
+    });
+  };
+  togglePopUp();
 });
