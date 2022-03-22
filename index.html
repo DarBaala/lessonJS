@@ -24,7 +24,6 @@
       sizes="16x16"
       href="./images/favicon/favicon-16x16.png"
     />
-    <link rel="manifest" href="./images/favicon/site.webmanifest" />
     <link
       rel="mask-icon"
       href="./images/favicon/safari-pinned-tab.svg"
@@ -33,7 +32,6 @@
     <meta name="msapplication-TileColor" content="#b91d47" />
     <meta name="theme-color" content="#ffffff" />
   </head>
-
   <body>
     <main>
       <header>
@@ -53,7 +51,7 @@
                 </div>
                 <div class="media-body">
                   <small>Есть вопросы? Звоните!</small>
-                  <p class="phone">8 /843/ 249 00 64</p>
+                  <p class="phone">8 843 249-00-64</p>
                 </div>
               </div>
             </div>
@@ -66,7 +64,6 @@
           </div>
         </div>
       </header>
-
       <h1>Услуги по 3D моделированию</h1>
       <h2>полный спектр услуг</h2>
       <div class="timer">
@@ -76,11 +73,11 @@
         </div>
         <div class="timer-action">До конца акции осталось</div>
         <div class="timer-numbers" id="timer">
-          <span id="timer-hours">0</span>
+          <span id="timer-hours">00</span>
           <span>:</span>
-          <span id="timer-minutes">0</span>
+          <span id="timer-minutes">00</span>
           <span>:</span>
-          <span id="timer-seconds">0</span>
+          <span id="timer-seconds">00</span>
         </div>
       </div>
       <form id="form1" name="user_form" class="main-form">
@@ -123,11 +120,10 @@
           </div>
         </div>
       </form>
-      <small>*Мы гарантируем конфидициальность передаваемых данных</small>
+      <small>*Мы гарантируем конфиденциальность передаваемых данных</small>
       <br />
       <a href="#service-block"><img src="images/scroll.svg" alt="" /></a>
     </main>
-
     <menu>
       <a class="close-btn" href="#close">&times;</a>
       <ul>
@@ -138,7 +134,6 @@
         <li><a href="#connect">Остались вопросы?</a></li>
       </ul>
     </menu>
-
     <div id="service-block" class="service">
       <div class="container">
         <h2>Наши услуги</h2>
@@ -172,7 +167,6 @@
             <img src="images/service/service-1.png" alt="" />
           </div>
         </div>
-
         <div class="service-tab row d-none">
           <div class="col-md-6 col-sm-6">
             <img src="images/service/service-2.png" alt="" />
@@ -188,7 +182,6 @@
             </div>
           </div>
         </div>
-
         <div class="service-tab row d-none">
           <div class="service-outer col-md-6 col-sm-6 col-12">
             <div class="service-inner">
@@ -205,7 +198,6 @@
         </div>
       </div>
     </div>
-
     <div id="portfolio" class="portfolio">
       <div class="container">
         <h2>Портфолио</h2>
@@ -231,25 +223,17 @@
           </li>
           <a href="#" class="portfolio-btn prev" id="arrow-left"></a>
           <a href="#" class="portfolio-btn next" id="arrow-right"></a>
-          <ul class="portfolio-dots">
-            <li class="dot dot-active"></li>
-            <li class="dot"></li>
-            <li class="dot"></li>
-            <li class="dot"></li>
-            <li class="dot"></li>
-            <li class="dot"></li>
-          </ul>
+          <ul class="portfolio-dots"></ul>
         </ul>
       </div>
     </div>
-
     <div id="calc" class="calc">
       <div class="container">
         <h2>Рассчитать стоимость</h2>
         <div class="underline"></div>
         <div class="row">
           <div class="col-lg-6 d-none d-lg-block flex">
-            <img src="images/calc.jpg" alt="" />
+            <img src="images/calc/flat.jpg" alt="Офис" />
           </div>
           <div class="col-lg-6 col-12 flex">
             <div class="calc-block">
@@ -262,21 +246,21 @@
                 <option value="2">Интерьер Офиса</option>
               </select>
               <input
-                type="number"
+                type="text"
                 min="1"
                 step="1"
                 class="calc-item calc-square"
                 placeholder="Общая площадь*"
               />
               <input
-                type="number"
+                type="text"
                 min="1"
                 step="1"
                 class="calc-item calc-count"
                 placeholder="Количество помещений"
               />
               <input
-                type="number"
+                type="text"
                 min="1"
                 step="1"
                 class="calc-item calc-day"
@@ -284,7 +268,7 @@
               />
               <div class="calc-total">ИТОГО: <span id="total">0</span></div>
               <div class="calc-mini">
-                * стоимость по умолчанию расчитывается на 1 помещение и срок 10
+                * стоимость по умолчанию рассчитывается на 1 помещение и срок 10
                 дней <br />
                 **точная стоимость и сроки работ обговариваются индивидуально,
                 после ознакомления с техническим заданием.
@@ -294,7 +278,6 @@
         </div>
       </div>
     </div>
-
     <div id="companies" class="companies">
       <div class="container">
         <h2>Нам доверяют</h2>
@@ -322,11 +305,13 @@
             <div class="companies-hor-item">
               <img src="images/companies/companies-7.png" alt="" />
             </div>
+            <div class="companies-hor-item">
+              <img src="images/companies/companies-8.png" alt="" />
+            </div>
           </div>
         </div>
       </div>
     </div>
-
     <div id="command" class="command">
       <div class="container">
         <h2>Наша команда</h2>
@@ -339,7 +324,7 @@
               data-img="images/command/command-1a.jpg"
               alt=""
             />
-            <div class="description">Patrick Stewart</div>
+            <div class="description">Quentin Tarantino</div>
             <p>Директор компании</p>
           </div>
           <div class="col-md-4 col-sm-6 col-12">
@@ -349,7 +334,7 @@
               data-img="images/command/command-2a.jpg"
               alt=""
             />
-            <div class="description">Cristina Branco</div>
+            <div class="description">Parker Posey</div>
             <p>Финансовый директор</p>
           </div>
           <div class="col-md-4 col-sm-6 col-12">
@@ -359,7 +344,7 @@
               data-img="images/command/command-3a.jpg"
               alt=""
             />
-            <div class="description">PewDiePie</div>
+            <div class="description">Gonzalo Higuaín</div>
             <p>Инженер модельер</p>
           </div>
           <div class="col-md-4 col-sm-6 col-12">
@@ -369,7 +354,7 @@
               data-img="images/command/command-4a.jpg"
               alt=""
             />
-            <div class="description">John Mayer</div>
+            <div class="description">Liam Payne</div>
             <p>3D дизайнер</p>
           </div>
           <div class="col-md-4 col-sm-6 col-12">
@@ -379,7 +364,7 @@
               data-img="images/command/command-5a.jpg"
               alt=""
             />
-            <div class="description">Nico Rosberg</div>
+            <div class="description">Bristol Palin</div>
             <p>Дизайнер интерьеров</p>
           </div>
           <div class="col-md-4 col-sm-6 col-12">
@@ -389,32 +374,26 @@
               data-img="images/command/command-6a.jpg"
               alt=""
             />
-            <div class="description">Brantley Gilbert</div>
+            <div class="description">Dominic Monaghan</div>
             <p>Дизайнер ландшафтов</p>
           </div>
         </div>
         <div class="quote">
           <img class="cov-left" src="images/command/cov-1.png" alt="" />
           <div class="description">Ты - то, что ты делаешь!</div>
-          <p>
-            То, что мы делаем, определяет то, кем мы являемся. Люди чувствуют
-            старание и чувствуют неаккуратность. Это<br />
-            связано с уважением друг к другу, так что небрежность - это
-            неуважение к самому себе.
-          </p>
-          <span>Ислам Куаныш</span>
+          <p>А в начале пути мало, кто в нас верил, не правда ли?</p>
+          <span>Quentin Tarantino</span>
           <p>Директор</p>
           <img class="cov-right" src="images/command/cov-2.png" alt="" />
         </div>
       </div>
     </div>
-
     <div id="connect" class="connect">
       <div class="container">
         <h2>Остались вопросы?</h2>
         <div class="underline"></div>
         <div class="description">
-          Задайте их в форме ниже и наши специалисты свяжуться с Вами!
+          Задайте их в форме ниже и наши специалисты свяжутся с Вами!
         </div>
         <div class="row">
           <div class="col-md-8 col-sm-8 col-12">
@@ -476,7 +455,6 @@
               </div>
             </form>
           </div>
-
           <div class="col-md-4 col-sm-4 col-12">
             <div class="connect-adress">
               <img src="images/connect/phone.svg" alt="" />
@@ -503,10 +481,9 @@
         </div>
       </div>
     </div>
-
     <footer>
       <div class="container">
-        <div class="row">
+        <div class="row justify-content-between">
           <div class="col-md-2 col-sm-2 col-12">
             <a href="#">Главная</a><br />
             <a href="#">Тарифы</a><br />
@@ -530,8 +507,8 @@
         </div>
         <div class="line"></div>
         <div class="row">
-          <div class="col-md-6 col-sm-6 col-12">
-            <p>2019. Все права защищены</p>
+          <div class="col-md-6 col-sm-6 col-12 d-flex align-items-center">
+            <p>2020. Все права защищены</p>
           </div>
           <div class="col-md-6 col-sm-6 col-12 web">
             <img src="./images/footer/academy.png" alt="" />
@@ -539,7 +516,6 @@
         </div>
       </div>
     </footer>
-
     <div class="popup">
       <div class="popup-content">
         <button class="popup-close">&times;</button>
