@@ -141,7 +141,7 @@ window.addEventListener("DOMContentLoaded", function () {
       }
       btnDot.append(dots);
     }
-    const dot = document.querySelectorAll(".dot");
+    const dots = document.querySelectorAll(".dot");
     let currentSlide = 0,
       interval;
     const prevSlide = (elem, index, strClass) => {
@@ -152,13 +152,13 @@ window.addEventListener("DOMContentLoaded", function () {
     };
     const autoPlaySlide = () => {
       prevSlide(slide, currentSlide, "portfolio-item-active");
-      prevSlide(dot, currentSlide, "dot-active");
+      prevSlide(dots, currentSlide, "dot-active");
       currentSlide++;
       if (currentSlide >= slide.length) {
         currentSlide = 0;
       }
       nextSlide(slide, currentSlide, "portfolio-item-active");
-      nextSlide(dot, currentSlide, "dot-active");
+      nextSlide(dots, currentSlide, "dot-active");
     };
     const startSlide = (time = 3000) => {
       interval = setInterval(autoPlaySlide, time);
@@ -173,13 +173,13 @@ window.addEventListener("DOMContentLoaded", function () {
         return;
       }
       prevSlide(slide, currentSlide, "portfolio-item-active");
-      prevSlide(dot, currentSlide, "dot-active");
+      prevSlide(dots, currentSlide, "dot-active");
       if (target.matches("#arrow-right")) {
         currentSlide++;
       } else if (target.matches("#arrow-left")) {
         currentSlide--;
       } else if (target.matches(".dot")) {
-        dot.forEach((elem, index) => {
+        dots.forEach((elem, index) => {
           if (elem === target) {
             currentSlide = index;
           }
@@ -192,7 +192,7 @@ window.addEventListener("DOMContentLoaded", function () {
         currentSlide = slide.length - 1;
       }
       nextSlide(slide, currentSlide, "portfolio-item-active");
-      nextSlide(dot, currentSlide, "dot-active");
+      nextSlide(dots, currentSlide, "dot-active");
     });
     slider.addEventListener("mouseover", (event) => {
       if (
