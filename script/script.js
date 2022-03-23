@@ -213,7 +213,7 @@ window.addEventListener("DOMContentLoaded", function () {
     startSlide(1500);
   };
   slider();
-  const setCommandImg = () => {
+  const setCommandImg = (event) => {
     const command = document.querySelector("#command .row");
     const changingPhotos = () => {
       const target = event.target;
