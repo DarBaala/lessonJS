@@ -45,19 +45,17 @@ window.addEventListener("DOMContentLoaded", function () {
   countTimer("22 march 2022");
   /// MENU
   const toggleMenu = () => {
-    const handlerMenu = () => {
+    const handlerMenu = (event) => {
       const target = event.target;
-      const displayMenu = () => {
-        document.querySelector("menu").classList.toggle("active-menu");
-      };
+      const menuButter = document.querySelector("menu");
       if (
         target.closest(".menu") ||
         (!target.closest("menu") &&
-          document.querySelector("menu").classList.contains("active-menu"))
+          menuButter.classList.contains("active-menu"))
       ) {
-        displayMenu();
+        menuButter.classList.toggle("active-menu");
       } else if (target.closest("menu") && target.closest('[href^="#"]')) {
-        displayMenu();
+        menuButter.classList.toggle("active-menu");
       }
     };
     document.body.addEventListener("click", handlerMenu);
