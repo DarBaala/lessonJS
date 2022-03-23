@@ -47,15 +47,11 @@ window.addEventListener("DOMContentLoaded", function () {
   const toggleMenu = () => {
     const handlerMenu = (event) => {
       const target = event.target;
-      const menuButter = document.querySelector("menu");
-      if (
-        target.closest(".menu") ||
-        (!target.closest("menu") &&
-          menuButter.classList.contains("active-menu"))
-      ) {
-        menuButter.classList.toggle("active-menu");
-      } else if (target.closest("menu") && target.closest('[href^="#"]')) {
-        menuButter.classList.toggle("active-menu");
+      const menu = document.querySelector("menu");
+      if (target.closest(".menu")) {
+        menu.classList.add("active-menu");
+      } else if (target !== menu) {
+        menu.classList.remove("active-menu");
       }
     };
     document.body.addEventListener("click", handlerMenu);
