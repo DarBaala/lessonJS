@@ -1,5 +1,5 @@
 window.addEventListener("DOMContentLoaded", function () {
-  "use strict";
+  ("use strict");
   /// TImer
   function countTimer(deadline) {
     let timerHours = document.querySelector("#timer-hours"),
@@ -277,4 +277,116 @@ window.addEventListener("DOMContentLoaded", function () {
     });
   };
   calculator(100);
+
+  // send-ajax-form
+  //Валидация форм
+  const validFormName = () => {
+    const formName = document.querySelectorAll('[placeholder="Ваше имя"]');
+    formName.forEach((item) => {
+      item.addEventListener("input", () => {
+        item.value = item.value.replace(/[^а-яё\s]/gi, "");
+      });
+      item.addEventListener("blur", () => {
+        item.value = item.value
+          .split(/\s+/)
+          .map((str) => str.charAt(0).toUpperCase() + str.slice(1))
+          .join(" ");
+      });
+    });
+  };
+  validFormName();
+  const validFormEmail = () => {
+    //Выбираем все поля плейсхолдер которых содержит строку "E-mail"
+    const formEmail = document.querySelectorAll('[placeholder~="E-mail"]');
+    formEmail.forEach((item) => {
+      item.addEventListener("input", () => {
+        item.value = item.value.replace(/[^a-z@\-_.!~*']/gi, "");
+      });
+      item.addEventListener("blur", () => {
+        item.value = item.value
+          .replace(/^[\s-]+|[\s-]+$/gi, "")
+          .replace(/-+/g, "-");
+      });
+    });
+  };
+  validFormEmail();
+  const validFormPhone = () => {
+    //Выбираем все поля плейсхолдер которых содержит подстроку "телефон"
+    const formPhone = document.querySelectorAll('[placeholder*="телефон"]');
+    formPhone.forEach((item) => {
+      item.addEventListener("input", () => {
+        item.value = item.value.replace(/[^+\d]/g, "");
+      });
+      item.addEventListener("blur", () => {
+        item.value = item.value.replace(/^[\s]+|[\s\+]{1,}$/g, "");
+      });
+    });
+  };
+  validFormPhone();
+  //Блок Контакты
+  const contacts = () => {
+    const message = document.getElementById("form2-message");
+    message.addEventListener("input", () => {
+      message.value = message.value.replace(/[^а-яё\d\s\-\?;:,.!]/gi, "");
+    });
+    message.addEventListener("blur", () => {
+      message.value = message.value
+        .trim()
+        .replace(/\s+/g, " ")
+        .replace(/-+/g, "-");
+    });
+  };
+  contacts();
+  const sendForm = (formId) => {
+    const errorMessage = "Что-то пошло не так!",
+      loadedMessage = "Загрузка...",
+      successMessage = "Спасибо! Мы скоро с Вами свяжемся!";
+    const form = document.getElementById(formId);
+    const statusMessage = document.createElement("div"); // Cоздаем див
+    statusMessage.style.cssText = "font-size: 2rem;"; // Стили для дива
+    const postData = (body, outputData, errorData) => {
+      const request = new XMLHttpRequest(); // Создаем объект для работы с AJAX
+      request.addEventListener("readystatechange", () => {
+        if (request.readyState !== 4) {
+          return;
+        }
+        if (request.status === 200) {
+          outputData();
+        } else {
+          errorData(request.status);
+        }
+      }); // Отлавливаем событие(пошаговый статус отправки - 'readystatechange'
+      request.open("POST", "./server.php"); // Отправляем на сервер данные
+      request.setRequestHeader("Content-Type", "application/json"); // Метод настройки загаловка, имя|значение. В случае с AJAX multipart/form-data
+      // request.send(formData); // отправляем данные
+      request.send(JSON.stringify(body)); // отправляем данные
+    };
+    form.addEventListener("submit", (event) => {
+      event.preventDefault(); // Отменяет событие ПО УМОЛЧАНИЮ
+      form.appendChild(statusMessage); // Добавляем созданный див в form
+      const formData = new FormData(form); // Форма, с которой будем получать данные
+      statusMessage.textContent = loadedMessage;
+      let body = {};
+      form.reset(); //Сбрасываем значения
+      // for (let val of formData.entries()) {
+      //   body[val[0]] = val[1];
+      // } // Достаем значeние из FormData
+      formData.forEach((val, key) => {
+        body[key] = val; // Достаем знначение из FormData, но с помощью forEach
+      });
+      postData(
+        body,
+        () => {
+          statusMessage.textContent = successMessage;
+        },
+        (error) => {
+          statusMessage.textContent = errorMessage;
+          console.error(error);
+        }
+      );
+    });
+  };
+  sendForm("form1");
+  sendForm("form2");
+  sendForm("form3");
 });
