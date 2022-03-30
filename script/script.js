@@ -344,22 +344,24 @@ window.addEventListener("DOMContentLoaded", function () {
     const form = document.getElementById(formId);
     const statusMessage = document.createElement("div"); // Cоздаем див
     statusMessage.style.cssText = "font-size: 2rem;"; // Стили для дива
-    const postData = (body, outputData, errorData) => {
-      const request = new XMLHttpRequest(); // Создаем объект для работы с AJAX
-      request.addEventListener("readystatechange", () => {
-        if (request.readyState !== 4) {
-          return;
-        }
-        if (request.status === 200) {
-          outputData();
-        } else {
-          errorData(request.status);
-        }
-      }); // Отлавливаем событие(пошаговый статус отправки - 'readystatechange'
-      request.open("POST", "./server.php"); // Отправляем на сервер данные
-      request.setRequestHeader("Content-Type", "application/json"); // Метод настройки заголовка, имя|значение. В случае с AJAX multipart/form-data
-      // request.send(formData); // отправляем данные
-      request.send(JSON.stringify(body)); // отправляем данные
+    const postData = (body) => {
+      return new Promise((resolve, reject) => {
+        const request = new XMLHttpRequest(); // Создаем объект для работы с cервером
+        request.addEventListener("readystatechange", () => {
+          if (request.readyState !== 4) {
+            return;
+          }
+          if (request.status === 200) {
+            resolve();
+          } else {
+            reject(request.status);
+          }
+        }); // Отлавливаем событие(пошаговый статус отправки - 'readystatechange'
+        request.open("POST", "./server.php"); // Отправляем на сервер данные
+        request.setRequestHeader("Content-Type", "application/json"); // Метод настройки заголовка, имя|значение. В случае с AJAX multipart/form-data
+        // request.send(formData); // отправляем данные
+        request.send(JSON.stringify(body)); // отправляем данные
+      });
     };
     form.addEventListener("submit", (event) => {
       event.preventDefault(); // Отменяет событие ПО УМОЛЧАНИЮ
@@ -374,16 +376,12 @@ window.addEventListener("DOMContentLoaded", function () {
       formData.forEach((val, key) => {
         body[key] = val; // Достаем значение из FormData, но с помощью forEach
       });
-      postData(
-        body,
-        () => {
-          statusMessage.textContent = successMessage;
-        },
-        (error) => {
+      postData(body)
+        .then(() => (statusMessage.textContent = successMessage))
+        .catch((error) => {
           statusMessage.textContent = errorMessage;
           console.error(error);
-        }
-      );
+        });
     });
   };
   sendForm("form1");
