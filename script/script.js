@@ -215,7 +215,7 @@ window.addEventListener("DOMContentLoaded", function () {
   slider();
   const setCommandImg = (event) => {
     const command = document.querySelector("#command .row");
-    const changingPhotos = () => {
+    const changingPhotos = (event) => {
       const target = event.target;
       if (target.classList.contains("command__photo")) {
         const lastSrc = target.src;
@@ -297,10 +297,10 @@ window.addEventListener("DOMContentLoaded", function () {
   validFormName();
   const validFormEmail = () => {
     //Выбираем все поля плейсхолдер которых содержит строку "E-mail"
-    const formEmail = document.querySelectorAll('[placeholder~="E-mail"]');
+    const formEmail = document.querySelectorAll('[placeholder="E-mail"]');
     formEmail.forEach((item) => {
       item.addEventListener("input", () => {
-        item.value = item.value.replace(/[^a-z@\-_.!~*']/gi, "");
+        item.value = item.value.replace(/[^a-z@\-_.!~*^1-9']{1,}/gi, "");
       });
       item.addEventListener("blur", () => {
         item.value = item.value
@@ -357,7 +357,7 @@ window.addEventListener("DOMContentLoaded", function () {
         }
       }); // Отлавливаем событие(пошаговый статус отправки - 'readystatechange'
       request.open("POST", "./server.php"); // Отправляем на сервер данные
-      request.setRequestHeader("Content-Type", "application/json"); // Метод настройки загаловка, имя|значение. В случае с AJAX multipart/form-data
+      request.setRequestHeader("Content-Type", "application/json"); // Метод настройки заголовка, имя|значение. В случае с AJAX multipart/form-data
       // request.send(formData); // отправляем данные
       request.send(JSON.stringify(body)); // отправляем данные
     };
@@ -372,7 +372,7 @@ window.addEventListener("DOMContentLoaded", function () {
       //   body[val[0]] = val[1];
       // } // Достаем значeние из FormData
       formData.forEach((val, key) => {
-        body[key] = val; // Достаем знначение из FormData, но с помощью forEach
+        body[key] = val; // Достаем значение из FormData, но с помощью forEach
       });
       postData(
         body,
