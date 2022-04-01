@@ -1,0 +1,27 @@
+{
+  "name": "lessonjs",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "webpack-dev-server --open --mode=development",
+    "build": "webpack --mode=production"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DarBaala/lessonJS.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DarBaala/lessonJS/issues"
+  },
+  "homepage": "https://github.com/DarBaala/lessonJS#readme",
+  "devDependencies": {
+    "path": "^0.12.7",
+    "webpack": "^5.71.0",
+    "webpack-cli": "^4.9.2",
+    "webpack-dev-server": "^4.7.4"
+  }
+}
