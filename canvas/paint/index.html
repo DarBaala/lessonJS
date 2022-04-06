@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Canvas</title>
+    <style>
+      #color {
+        display: flex;
+        margin: auto;
+      }
+      #canvas {
+        border: 1px solid black;
+        display: flex;
+        margin: auto;
+      }
+      #range {
+        display: flex;
+        margin: auto;
+      }
+    </style>
+  </head>
+  <body>
+    <canvas id="canvas" width="600" height="600"></canvas>
+    <br />
+    <input type="color" id="color" />
+    <input value="1" type="range" id="range" min="1" max="10" />
+  </body>
+  <script src="script.js"></script>
+</html>
