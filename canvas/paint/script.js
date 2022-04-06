@@ -3,6 +3,7 @@ const canvas = document.getElementById("canvas");
 const ctx = canvas.getContext("2d");
 const color = document.getElementById("color");
 const range = document.getElementById("range");
+const clearButton = document.getElementById("button");
 color.addEventListener("input", () => {
   ctx.strokeStyle = color.value;
 });
@@ -34,4 +35,7 @@ canvas.addEventListener("touchstart", (event) => {
     ctx.stroke();
     ctx.closePath();
   }
+});
+clearButton.addEventListener("click", () => {
+  ctx.clearRect(0, 0, 600, 600);
 });
