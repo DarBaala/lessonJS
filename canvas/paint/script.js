@@ -22,3 +22,16 @@ canvas.addEventListener("mousemove", (event) => {
     ctx.closePath();
   }
 });
+canvas.addEventListener("touchstart", (event) => {
+  const x = event.offsetX,
+    y = event.offsetY,
+    mx = event.movementX,
+    my = event.movementY;
+  if (event.buttons > 0) {
+    ctx.beginPath();
+    ctx.moveTo(x, y);
+    ctx.lineTo(x - mx, y - my);
+    ctx.stroke();
+    ctx.closePath();
+  }
+});
